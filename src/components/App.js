@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import './App.css';
 import Form from './Form';
 import Result from './Result';
-const APIKey = '89a828a6427dbfe875625255fc1014e1';
+const APIKey = '89a828a6427dbfe875625255fc1014e1'; //klucz do api
 
 class App extends Component {
 
@@ -15,7 +15,7 @@ class App extends Component {
     wind: '',
     sunrise: '',
     sunset: '',
-    er: '',
+    err: false,
   }
 
   handleInputChange = e => {
@@ -35,8 +35,26 @@ class App extends Component {
       throw Error("fail")
     })
     .then(response => response.json())
-    .then(data => console.log(data))
-    .catch(er => console.log(er))
+    .then(data => {
+      const time = new Date().toLocaleString()
+      this.setState(state =>({
+        err: false,
+        temp: data.main.temp,
+        city: this.state.value,
+        date: time,
+        pressure: data.main.pressure,
+        wind: data.wind.speed,
+        sunrise: data.sys.sunrise,
+        sunset: data.sys.sunset,
+      }))
+    })
+    .catch(err => {
+      console.log(err);
+      this.setState(prevState =>({
+        err: true,
+        city: prevState.value
+      }))
+    })
 
 
 
@@ -49,7 +67,7 @@ class App extends Component {
             change = {this.handleInputChange}
             submit = {this.handleCitySubmit} 
       />
-      <Result />
+      <Result weather={this.state} />
     </div>
   );
 }
