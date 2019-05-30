@@ -16,7 +16,7 @@ const Form = props =>{
          value={props.value}
          onChange={props.change}  
             />
-            
+
             <Button size="large" variant="contained" color="primary" onClick= {props.submit} >szukaj</Button>
         </form>
         

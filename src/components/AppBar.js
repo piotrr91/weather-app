@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
+import './App.css';
 
 const useStyles = makeStyles({
   root: {
@@ -14,10 +15,10 @@ function SimpleAppBar() {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
+    <div className="App">
       <AppBar position="static" color="primary">
         <Toolbar>
-          <Typography variant="h6" color="inherit">
+          <Typography  variant="h6" color="inherit">
             Pogoda w twoim mieście
           </Typography>
         </Toolbar>
