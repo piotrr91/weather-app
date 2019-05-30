@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './App.css';
 import Form from './Form';
 import Result from './Result';
+import AppBar from './AppBar';
 const APIKey = '89a828a6427dbfe875625255fc1014e1'; //klucz do api
 
 class App extends Component {
@@ -62,7 +63,7 @@ class App extends Component {
   render() {
   return (
     <div className="App">
-      Pogoda w twoim mieście
+      <AppBar/>
       <Form value = {this.state.value} 
             change = {this.handleInputChange}
             submit = {this.handleCitySubmit} 

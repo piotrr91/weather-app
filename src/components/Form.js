@@ -1,17 +1,27 @@
 import React from 'react';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+
+
 
 const Form = props =>{
     return(
         <form onSubmit = {props.submit} >
-            <input type="text"
-            value = {props.value}
-            onChange={props.change}
-            placeholder="wpisz miasto" 
+          
+            <TextField
+
+         id="standard-with-placeholder"
+         placeholder="Wpisz miasto"
+         margin="normal"
+         value={props.value}
+         onChange={props.change}  
             />
-            <button>szukaj</button>
+            
+            <Button size="large" variant="contained" color="primary" onClick= {props.submit} >szukaj</Button>
         </form>
         
     )
 }
+
 
 export default Form

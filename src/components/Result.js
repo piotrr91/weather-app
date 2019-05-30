@@ -28,7 +28,7 @@ const Result = props => {
     return ( 
       
       <div className= "result">
-          {err ? `Nie ma w bazie takiego miasta${city} `: content}
+          {err ? `Nie ma w bazie takiego miasta: ${city} `: content}
       </div>
 
      
