@@ -1,12 +1,23 @@
+.App{
+    height: 45vh;
+    background-image: url(back.jpg);
+    background-color: lightblue;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
 .container{
     display: flex;
     justify-content: center;
-    margin-top: 20px;
+    margin-top: 10px;
+    
 }
 
 .result{
    
-   display: flex;
-   justify-content: center;
-   margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    
 }

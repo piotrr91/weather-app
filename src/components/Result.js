@@ -5,7 +5,7 @@ import Typography from '@material-ui/core/Typography';
 
 const Result = props => {
 
-    const { temp, city, date, pressure, wind, sunrise, sunset, err} = props.weather;
+    const { temp, city, date, pressure, speed, deg, sunrise, sunset, rain, clouds, err} = props.weather;
 
     let content = null;
 
@@ -13,6 +13,12 @@ const Result = props => {
 
         const sunriseTime = new Date(sunrise * 1000).toLocaleTimeString();
         const sunsetTime = new Date(sunset * 1000).toLocaleTimeString(); 
+        const directions = [
+            "N", "NNE", "NE", "ENE", "E", "ESE", "SE",
+            "SSE", "S", "SSW", "SW", "WSW", "W", "WNW",
+            "NW", "NNW"
+        ];
+
         content = (
             <Card className= "result">
                 <CardContent>
@@ -27,7 +33,9 @@ const Result = props => {
                 </Typography>
                 <Typography variant="body2" component="p">
                     Ciśnienie: {pressure} hPA<br />
-                    Siła wiatru: {wind} m/s<br />
+                    Zachmurzenie: {clouds} % <br />
+                    Opady: {rain} <br />
+                    Siła i kierunek wiatru: {speed} m/s {directions} <br />
                     Wschód słońca o {sunriseTime}<br />
                     Zachód słońca o {sunsetTime}
                 </Typography>

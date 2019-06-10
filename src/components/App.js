@@ -13,9 +13,12 @@ class App extends Component {
     city: '',
     date: '',
     pressure: '',
-    wind: '',
+    speed: '',
+    deg: '',
     sunrise: '',
     sunset: '',
+    clouds: '',
+    rain: '',
     err: false,
   }
 
@@ -44,9 +47,12 @@ class App extends Component {
         city: this.state.value,
         date: time,
         pressure: data.main.pressure,
-        wind: data.wind.speed,
+        speed: data.wind.speed,
+        deg: data.wind.deg,
         sunrise: data.sys.sunrise,
         sunset: data.sys.sunset,
+        clouds: data.clouds.all,
+        rain: data.rain.1h,
       }))
     })
     .catch(err => {
