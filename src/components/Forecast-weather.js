@@ -5,21 +5,8 @@ import {getForecastWheatherApi} from '../consts/api.consts'
 
 
 class ForecastComponent extends Component {
-  state = {
-    value: '',
-    temp: '',
-    city: '',
-    date: '',
-    pressure: '',
-    speed: '',
-    deg: '',
-    sunrise: '',
-    sunset: '',
-    clouds: '',
-    rain: '',
-    humidity: '',
-    line: '',
-    err: false,
+  state = { 
+    mappedForecast: []
   }
 
   handleInputChange = e => {
@@ -38,21 +25,30 @@ class ForecastComponent extends Component {
     })
     .then(response => response.json())
     .then(data => {
-      
+      console.log(data)
+     const {list} = data
      
-      
-      this.setState(state =>({
+     const mappedForecast = list.map( forecast => {
+      const {dt, main, wind, clouds,rain} = forecast
+      let myRain = 0
+      if (rain && rain['3h']){
+        myRain = rain['3h']
+      }
+      return {
         err: false,
-        date: data.list.dt,
+        date: dt,
         city: this.state.value,
-        temp: data.list.main.temp,
-        pressure: data.list.main.pressure,
-        speed: data.list.wind.speed,
-        deg: data.list.wind.deg,
-        clouds: data.list.clouds.all,
-        humidity: data.list.main.humidity,
-        
-      }))
+        temp: main.temp,
+        pressure: main.pressure,
+        speed: wind.speed,
+        deg: wind.deg,
+        clouds: clouds.all,
+        humidity: main.humidity, 
+        rain: myRain,
+      }
+     })
+      
+      this.setState({mappedForecast})
     })
     .catch(err => {
       console.log(err);
@@ -63,15 +59,20 @@ class ForecastComponent extends Component {
     })
   }
   render() {
+    const results = this.state.mappedForecast.map( singleForecast => {
+      return <div className="result">
+        <ResultForecast weather={singleForecast} />
+      </div>
+    })
+
     return (
       <div className="container">
         <Form value = {this.state.value} 
                 change = {this.handleInputChange}
                 submit = {this.handleCitySubmit} 
         />
-        <div className="result">
-        <ResultForecast weather={this.state} />
-        </div>
+        {results}
+        
       </div>
           );
   }

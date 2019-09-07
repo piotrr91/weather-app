@@ -12,7 +12,9 @@ const ResultForecast = props => {
 
     if(!err && city ) {
 
-       
+        const myDate = new Date(date*1000).toLocaleString()
+        const myTemp = Math.round(temp)
+        const myPressure = Math.round(pressure)
         const directions = [
             "N", "NNE", "NE", "ENE", "E", "ESE", "SE",
             "SSE", "S", "SSW", "SW", "WSW", "W", "WNW",
@@ -35,13 +37,18 @@ const ResultForecast = props => {
                     Pogoda: {city}
                 </Typography>
                 <Typography variant="h5" component="h2">
-                    
+                Temperatura: {myTemp} &#176;C
                 </Typography>
                 <Typography color="textSecondary">
-                
+                data: {myDate}
                 </Typography>
                 <Typography variant="body2" component="p">
-                   
+                    Ciśnienie: {myPressure} hPA<br />
+                    Wilgotność: {humidity} % <br />
+                    Zachmurzenie: {clouds} % <br />
+                    Siła i kierunek wiatru: {speed} m/s {directionName} <br />
+                    opady: {rain} mm
+                    
                    
                 </Typography>
                 

@@ -14,11 +14,7 @@ const Result = props => {
 
         const sunriseTime = new Date(sunrise * 1000).toLocaleTimeString();
         const sunsetTime = new Date(sunset * 1000).toLocaleTimeString(); 
-        const directions = [
-            "N", "NNE", "NE", "ENE", "E", "ESE", "SE",
-            "SSE", "S", "SSW", "SW", "WSW", "W", "WNW",
-            "NW", "NNW"
-        ];
+        const myTemp = Math.round(temp)
         let directionName = "W"
         if(deg >= 315 || deg <45) {
             directionName = "N"
@@ -39,7 +35,7 @@ const Result = props => {
                     Dane dla dnia i godziny: {date}
                 </Typography>
                 <Typography color="textSecondary">
-                Temperatura: {temp} &#176;C
+                Temperatura: {myTemp} &#176;C
                 </Typography>
                 <Typography variant="body2" component="p">
                     Ciśnienie: {pressure} hPA<br />
